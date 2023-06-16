@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/Header.tsx/Header";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -36,13 +37,15 @@ export const HomePage = () => {
 
   console.log(articleData);
 
+  // TODO: Resolve error if user goes directly to article page
+  // - refetch data and filter
   const handleArticleClick = (id: number, title: string) => {
     navigate(`/articles/${id}`, { state: { title } });
   };
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <Header isHomePage={true} />
       <button
         onClick={() => {
           handleArticleClick(1, "Testing");

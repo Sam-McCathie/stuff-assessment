@@ -1,4 +1,5 @@
 import { useLocation, useParams } from "react-router-dom";
+import { Header } from "../components/Header.tsx/Header";
 
 export const ArticlePage = () => {
   const { id } = useParams();
@@ -6,8 +7,11 @@ export const ArticlePage = () => {
   const { title } = location.state;
 
   return (
-    <h1>
-      {title}: {id}
-    </h1>
+    <div>
+      <Header />
+      <h1>
+        {title}: {id}
+      </h1>
+    </div>
   );
 };
