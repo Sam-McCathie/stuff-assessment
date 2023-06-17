@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  ArticleCard,
+  ArticleCardProps,
+} from "../../components/ArticleCard/ArticleCard";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
 import { Header } from "../../components/Header.tsx/Header";
+import { Article } from "../../types";
 import "./HomePage.css";
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
-  const [articleData, setArticleData] = useState(null);
+  const [articleData, setArticleData] = useState<any[]>([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -29,6 +34,15 @@ export const HomePage = () => {
     fetchArticlesData();
   }, []);
 
+  // TODO: Resolve error if user goes directly to article page
+  // - refetch data and filter
+  const handleArticleClick = useCallback(
+    (id: number, title: string) => {
+      navigate(`/articles/${id}`, { state: { title } });
+    },
+    [articleData]
+  );
+
   if (!articleData) {
     return <h1>Loading...</h1>;
   }
@@ -39,24 +53,25 @@ export const HomePage = () => {
 
   console.log(articleData);
 
-  // TODO: Resolve error if user goes directly to article page
-  // - refetch data and filter
-  const handleArticleClick = (id: number, title: string) => {
-    navigate(`/articles/${id}`, { state: { title } });
-  };
-
   return (
     <div>
       <Header isHomePage={true} />
       <div className="home-body">
         <FilterNavigationBar />
-        <button
-          onClick={() => {
-            handleArticleClick(1, "Testing");
-          }}
-        >
-          To article
-        </button>
+        {articleData.map((article: Article) => {
+          const thumbnailImage = article.story.images.find(
+            (image) => image.type === "Thumbnail 1:1"
+          );
+          const articleCardProps: ArticleCardProps = {
+            id: article.storyId,
+            title: article.story.headline,
+            imageUrl: thumbnailImage?.src || "",
+            imageAlt: thumbnailImage?.caption || "",
+            introduction: article.story.intro,
+            onClick: handleArticleClick,
+          };
+          return <ArticleCard {...articleCardProps} />;
+        })}
       </div>
     </div>
   );
