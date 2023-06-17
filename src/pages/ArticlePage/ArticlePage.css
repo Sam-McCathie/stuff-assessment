@@ -1,0 +1,44 @@
+.article-header {
+  background: #d9d9d9;
+  border: 2px solid #000000;
+  margin: 50px 15vw 0;
+  justify-content: center;
+  text-align: center;
+}
+
+.article-header {
+  padding: 20px;
+}
+
+.article-body {
+  background: #d9d9d9;
+  border: 2px solid #bbbbbb;
+  margin: 20px 15vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-description-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 20px 20px;
+}
+
+.article-description {
+  font-size: 20px;
+}
+
+.article-summary {
+  text-align: center;
+  padding: 20px;
+}
+
+.article-image {
+  max-width: 300px;
+  max-height: 300px;
+  margin: 10px 0;
+}
+
+.full-article-button {
+  margin-top: 20px;
+}

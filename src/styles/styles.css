@@ -1,0 +1,10 @@
+.regular-button {
+  width: 150px;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+  background: #d9d9d9;
+  border: 2px solid #000000;
+  font-weight: 600;
+}
