@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Article } from "../../types";
 
+export type FilterActive = "All" | "Section" | "Date";
+
 export const useHomePage = () => {
   const navigate = useNavigate();
 
@@ -52,9 +54,7 @@ export const useHomePage = () => {
     [articleData]
   );
 
-  // clean up how this is handled
-  // handle filter active here instead of filter nav bar?
-  const [filterActive, setFilterActive] = useState(false);
+  const [filterActive, setFilterActive] = useState<FilterActive>("All");
 
   const handleFilterByDate = () => {
     const sortedData = [...articleData];
@@ -65,7 +65,7 @@ export const useHomePage = () => {
     });
 
     setSortedArticleData(sortedData);
-    setFilterActive(true);
+    setFilterActive("Date");
   };
 
   const handleReverseFilterByDate = () => {
@@ -80,7 +80,7 @@ export const useHomePage = () => {
       (article) => article.story.section === category
     );
     setSortedArticleData(filteredArticlesArray);
-    setFilterActive(true);
+    setFilterActive("Section");
   };
 
   return {
@@ -96,6 +96,7 @@ export const useHomePage = () => {
       handleFilterByDate,
       handleReverseFilterByDate,
       handleFilterByCategory,
+      setFilterActive,
     },
   };
 };

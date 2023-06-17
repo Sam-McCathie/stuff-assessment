@@ -1,26 +1,31 @@
 import "./FilterNavigationBar.css";
 import { FilterNavigationButton } from "../FilterNavigationButton/FilterNavigationButton";
 import { memo, useState } from "react";
+import { FilterActive } from "../../../pages/HomePage/useHomePage";
 
 type FilterNavigationBarProps = {
+  filterActive: FilterActive;
   sections: string[];
   handleFilterByDate: () => void;
   handleReverseFilterByDate: () => void;
   handleFilterByCategory: (category: string) => void;
+  setFilterActive: (filterActive: FilterActive) => void;
 };
 
 export const FilterNavigationBar = memo(
   ({
+    filterActive,
     sections,
     handleFilterByDate,
     handleReverseFilterByDate,
     handleFilterByCategory,
+    setFilterActive,
   }: FilterNavigationBarProps) => {
-    const [activeFilter, setActiveFilter] = useState("All");
     const [isSectionsActive, setIsSectionsActive] = useState(false);
 
     const toggleSections = () => {
       setIsSectionsActive(!isSectionsActive);
+      isSectionsActive && setFilterActive("All");
     };
 
     return (
@@ -31,20 +36,21 @@ export const FilterNavigationBar = memo(
           <FilterNavigationButton text="Sections" onClick={toggleSections} />
           <FilterNavigationButton
             text="Date"
-            onClick={() => {
-              handleFilterByDate();
-              setActiveFilter("Date");
-            }}
+            onClick={handleFilterByDate}
             onClickToggle={handleReverseFilterByDate}
-            isActive={activeFilter === "Date"}
+            isActive={filterActive === "Date"}
           />
         </div>
         {isSectionsActive && (
           <div>
             {sections.map((section) => (
               <FilterNavigationButton
+                key={section}
                 text={section}
-                onClick={() => handleFilterByCategory(section)}
+                onClick={() => {
+                  handleFilterByCategory(section);
+                  setFilterActive("Section");
+                }}
               />
             ))}
           </div>

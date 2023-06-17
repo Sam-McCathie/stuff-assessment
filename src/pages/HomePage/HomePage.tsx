@@ -19,6 +19,7 @@ export const HomePage = () => {
       handleFilterByDate,
       handleReverseFilterByDate,
       handleFilterByCategory,
+      setFilterActive,
     },
   } = useHomePage();
 
@@ -36,10 +37,12 @@ export const HomePage = () => {
   }
 
   const FilterNavigationBarProps = {
+    filterActive,
     sections,
     handleFilterByDate,
     handleReverseFilterByDate,
     handleFilterByCategory,
+    setFilterActive,
   };
 
   return (
@@ -48,7 +51,7 @@ export const HomePage = () => {
       <div className="home-body">
         <FilterNavigationBar {...FilterNavigationBarProps} />
         <Articles
-          articleData={!filterActive ? articleData : sortedArticleData}
+          articleData={filterActive === "All" ? articleData : sortedArticleData}
           onClick={handleArticleClick}
         />
       </div>
