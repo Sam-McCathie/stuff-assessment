@@ -1,12 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ArticleCard,
-  ArticleCardProps,
-} from "../../components/ArticleCard/ArticleCard";
+import { Articles } from "../../components/Articles/Articles";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
 import { Header } from "../../components/Header.tsx/Header";
-import { Article } from "../../types";
 import "./HomePage.css";
 
 export const HomePage = () => {
@@ -58,20 +54,7 @@ export const HomePage = () => {
       <Header isHomePage={true} />
       <div className="home-body">
         <FilterNavigationBar />
-        {articleData.map((article: Article) => {
-          const thumbnailImage = article.story.images.find(
-            (image) => image.type === "Thumbnail 1:1"
-          );
-          const articleCardProps: ArticleCardProps = {
-            id: article.storyId,
-            title: article.story.headline,
-            imageUrl: thumbnailImage?.src || "",
-            imageAlt: thumbnailImage?.caption || "",
-            introduction: article.story.intro,
-            onClick: handleArticleClick,
-          };
-          return <ArticleCard {...articleCardProps} />;
-        })}
+        <Articles articleData={articleData} onClick={handleArticleClick} />
       </div>
     </div>
   );
