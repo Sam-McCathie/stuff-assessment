@@ -10,24 +10,24 @@
   border: 2px solid #000000;
 }
 
-.article-header {
+.article-card-header {
   display: flex;
   justify-content: space-between;
   margin: 20px;
 }
 
-.article-title {
+.article-card-title {
   /* font-weight: 400; */
   font-size: 18px;
   margin-right: 5px;
 }
 
-.article-image {
+.article-card-image {
   border: 2px solid #000000;
   max-width: 140px;
   max-height: 140px;
 }
 
-.article-introduction {
+.article-card-introduction {
   margin: 20px;
 }

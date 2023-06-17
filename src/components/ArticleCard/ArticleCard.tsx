@@ -10,6 +10,7 @@ export type ArticleCardProps = {
   openArticle: (id: string) => void; // TODO: Add onClick
 };
 
+// TODO: Hide image if no thumbnail provided
 export const ArticleCard = memo(
   ({
     id,
@@ -28,11 +29,11 @@ export const ArticleCard = memo(
 
     return (
       <div className="article-card" key={id} onClick={handOpenArticle}>
-        <div className="article-header">
-          <h1 className="article-title">{trucatedTitle}</h1>
-          <img src={imageUrl} alt={imageAlt} className="article-image" />
+        <div className="article-card-header">
+          <h1 className="article-card-title">{trucatedTitle}</h1>
+          <img src={imageUrl} alt={imageAlt} className="article-card-image" />
         </div>
-        <p className="article-introduction">{trucatedIntroduction}</p>
+        <p className="article-card-introduction">{trucatedIntroduction}</p>
       </div>
     );
   }
