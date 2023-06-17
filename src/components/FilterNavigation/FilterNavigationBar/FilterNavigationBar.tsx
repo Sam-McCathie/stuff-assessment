@@ -1,6 +1,6 @@
 import "./FilterNavigationBar.css";
 import { FilterNavigationButton } from "../FilterNavigationButton/FilterNavigationButton";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { FilterActive } from "../../../pages/HomePage/useHomePage";
 
 type FilterNavigationBarProps = {
@@ -24,18 +24,42 @@ export const FilterNavigationBar = memo(
     handleClearFilter,
   }: FilterNavigationBarProps) => {
     const [isSectionsActive, setIsSectionsActive] = useState(false);
+    const [activeSection, setActiveSection] = useState<string | null>(null);
 
     const toggleSections = () => {
       setIsSectionsActive(!isSectionsActive);
-      isSectionsActive && setFilterActive("All");
+      if (isSectionsActive) {
+        setFilterActive("All");
+        setActiveSection(null);
+      }
+    };
+
+    // handles if user selects a different filter instead of collapsing sections
+    useEffect(() => {
+      if (filterActive !== "Section") {
+        setIsSectionsActive(false);
+        setActiveSection(null);
+      }
+    }, [filterActive]);
+
+    const handleActiveSection = (section: string) => {
+      setActiveSection(section);
     };
 
     return (
       <div className="filter-navigation-bar">
         <div className="filter-navigation-bar-button-container">
           <h3>Filter by:</h3>
-          <FilterNavigationButton text="All" onClick={handleClearFilter} />
-          <FilterNavigationButton text="Sections" onClick={toggleSections} />
+          <FilterNavigationButton
+            text="All"
+            onClick={handleClearFilter}
+            isActive={filterActive === "All"}
+          />
+          <FilterNavigationButton
+            text="Sections"
+            onClick={toggleSections}
+            isActive={filterActive === "Section"}
+          />
           <FilterNavigationButton
             text="Date"
             onClick={handleFilterByDate}
@@ -51,8 +75,10 @@ export const FilterNavigationBar = memo(
                 text={section}
                 onClick={() => {
                   handleFilterByCategory(section);
+                  handleActiveSection(section);
                   setFilterActive("Section");
                 }}
+                isActive={activeSection === section}
               />
             ))}
           </div>
