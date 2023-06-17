@@ -83,6 +83,11 @@ export const useHomePage = () => {
     setFilterActive("Section");
   };
 
+  const handleClearFilter = () => {
+    setSortedArticleData([]);
+    setFilterActive("All");
+  };
+
   return {
     data: {
       articleData,
@@ -97,6 +102,7 @@ export const useHomePage = () => {
       handleReverseFilterByDate,
       handleFilterByCategory,
       setFilterActive,
+      handleClearFilter,
     },
   };
 };

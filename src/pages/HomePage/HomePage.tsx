@@ -20,6 +20,7 @@ export const HomePage = () => {
       handleReverseFilterByDate,
       handleFilterByCategory,
       setFilterActive,
+      handleClearFilter,
     },
   } = useHomePage();
 
@@ -43,6 +44,7 @@ export const HomePage = () => {
     handleReverseFilterByDate,
     handleFilterByCategory,
     setFilterActive,
+    handleClearFilter,
   };
 
   return (

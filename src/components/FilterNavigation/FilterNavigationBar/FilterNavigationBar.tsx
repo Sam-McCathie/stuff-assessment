@@ -10,6 +10,7 @@ type FilterNavigationBarProps = {
   handleReverseFilterByDate: () => void;
   handleFilterByCategory: (category: string) => void;
   setFilterActive: (filterActive: FilterActive) => void;
+  handleClearFilter: () => void;
 };
 
 export const FilterNavigationBar = memo(
@@ -20,6 +21,7 @@ export const FilterNavigationBar = memo(
     handleReverseFilterByDate,
     handleFilterByCategory,
     setFilterActive,
+    handleClearFilter,
   }: FilterNavigationBarProps) => {
     const [isSectionsActive, setIsSectionsActive] = useState(false);
 
@@ -32,7 +34,7 @@ export const FilterNavigationBar = memo(
       <div className="filter-navigation-bar">
         <div className="filter-navigation-bar-button-container">
           <h3>Filter by:</h3>
-          <FilterNavigationButton text="All" />
+          <FilterNavigationButton text="All" onClick={handleClearFilter} />
           <FilterNavigationButton text="Sections" onClick={toggleSections} />
           <FilterNavigationButton
             text="Date"
