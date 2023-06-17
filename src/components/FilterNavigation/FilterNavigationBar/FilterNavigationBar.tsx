@@ -8,7 +8,7 @@ type FilterNavigationBarProps = {
   sections: string[];
   handleFilterByDate: () => void;
   handleReverseFilterByDate: () => void;
-  handleFilterByCategory: (category: string) => void;
+  handleFilterBySection: (section: string) => void;
   setFilterActive: (filterActive: FilterActive) => void;
   handleClearFilter: () => void;
 };
@@ -19,7 +19,7 @@ export const FilterNavigationBar = memo(
     sections,
     handleFilterByDate,
     handleReverseFilterByDate,
-    handleFilterByCategory,
+    handleFilterBySection,
     setFilterActive,
     handleClearFilter,
   }: FilterNavigationBarProps) => {
@@ -74,7 +74,7 @@ export const FilterNavigationBar = memo(
                 key={section}
                 text={section}
                 onClick={() => {
-                  handleFilterByCategory(section);
+                  handleFilterBySection(section);
                   handleActiveSection(section);
                   setFilterActive("Section");
                 }}

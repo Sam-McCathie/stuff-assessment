@@ -74,10 +74,10 @@ export const useHomePage = () => {
     setSortedArticleData(sortedData.reverse());
   };
 
-  const handleFilterByCategory = (category: string) => {
+  const handleFilterBySection = (section: string) => {
     const articles = [...articleData];
     const filteredArticlesArray = articles.filter(
-      (article) => article.story.section === category
+      (article) => article.story.section === section
     );
     setSortedArticleData(filteredArticlesArray);
     setFilterActive("Section");
@@ -100,7 +100,7 @@ export const useHomePage = () => {
       handleArticleClick,
       handleFilterByDate,
       handleReverseFilterByDate,
-      handleFilterByCategory,
+      handleFilterBySection,
       setFilterActive,
       handleClearFilter,
     },
