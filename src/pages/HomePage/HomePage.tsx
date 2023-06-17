@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Articles } from "../../components/Articles/Articles";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
-import { Header } from "../../components/Header.tsx/Header";
+import { Toolbar } from "../../components/Toolbar.tsx/Toolbar";
 import { Article } from "../../types";
 import "./HomePage.css";
 
@@ -53,7 +53,7 @@ export const HomePage = () => {
 
   return (
     <div>
-      <Header isHomePage={true} />
+      <Toolbar isHomePage={true} />
       <div className="home-body">
         <FilterNavigationBar />
         <Articles articleData={articleData} onClick={handleArticleClick} />

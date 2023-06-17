@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import "./Header.css";
+import "./Toolbar.css";
 
-type HeaderProps = {
+type ToolbarProps = {
   isHomePage?: boolean;
 };
 
-export const Header = ({ isHomePage }: HeaderProps) => {
+export const Toolbar = ({ isHomePage }: ToolbarProps) => {
   const navigate = useNavigate();
 
   const navigateHome = () => {
@@ -17,13 +17,13 @@ export const Header = ({ isHomePage }: HeaderProps) => {
   };
 
   return (
-    <div className="header">
-      <div className="header-content-container">
-        <h1 className="header-logo header-link" onClick={navigateHome}>
+    <div className="toolbar">
+      <div className="toolbar-content-container">
+        <h1 className="toolbar-logo toolbar-link" onClick={navigateHome}>
           Stuff v0.01
         </h1>
         <h2
-          className="home-link header-link"
+          className="home-link toolbar-link"
           style={isHomePage ? isHomePageStyle : undefined}
           onClick={navigateHome}
         >

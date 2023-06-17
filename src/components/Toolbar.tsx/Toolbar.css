@@ -1,4 +1,4 @@
-.header {
+.toolbar {
   background-color: #d9d9d9;
   width: 100%;
   height: 80px;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.header-content-container {
+.toolbar-content-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,7 +14,7 @@
   padding: 0 110px;
 }
 
-.header-link {
+.toolbar-link {
   text-decoration: none;
   cursor: pointer;
 }

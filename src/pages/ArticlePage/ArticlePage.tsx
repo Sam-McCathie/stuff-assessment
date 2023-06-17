@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router-dom";
-import { Header } from "../../components/Header.tsx/Header";
+import { Toolbar } from "../../components/Toolbar.tsx/Toolbar";
 import { Article } from "../../types";
 
 export const ArticlePage = () => {
@@ -11,7 +11,7 @@ export const ArticlePage = () => {
 
   return (
     <div>
-      <Header />
+      <Toolbar />
       <div className="article-body">
         <h1>
           {article.story.headline}: {id}
