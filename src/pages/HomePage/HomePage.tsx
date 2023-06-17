@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Articles } from "../../components/Articles/Articles";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
 import { Header } from "../../components/Header.tsx/Header";
+import { Article } from "../../types";
 import "./HomePage.css";
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
-  const [articleData, setArticleData] = useState<any[]>([]);
+  const [articleData, setArticleData] = useState<Article[]>([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -33,8 +34,9 @@ export const HomePage = () => {
   // TODO: Resolve error if user goes directly to article page
   // - refetch data and filter
   const handleArticleClick = useCallback(
-    (id: number, title: string) => {
-      navigate(`/articles/${id}`, { state: { title } });
+    (id: string) => {
+      const article = articleData.find((article) => article.storyId === id);
+      navigate(`/articles/${id}`, { state: { article } });
     },
     [articleData]
   );

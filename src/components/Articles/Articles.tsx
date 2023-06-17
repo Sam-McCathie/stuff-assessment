@@ -4,7 +4,7 @@ import "./Articles.css";
 
 type ArticlesProps = {
   articleData: Article[];
-  onClick?: (id: number, title: string) => void;
+  onClick: (id: string) => void;
 };
 
 export const Articles = ({ articleData, onClick }: ArticlesProps) => {
@@ -14,13 +14,18 @@ export const Articles = ({ articleData, onClick }: ArticlesProps) => {
         const thumbnailImage = article.story.images.find(
           (image) => image.type === "Thumbnail 1:1"
         );
+
+        const openArticle = () => {
+          onClick(article.storyId);
+        };
+
         const articleCardProps: ArticleCardProps = {
           id: article.storyId,
           title: article.story.headline,
           imageUrl: thumbnailImage?.src || "",
           imageAlt: thumbnailImage?.caption || "",
           introduction: article.story.intro,
-          onClick: onClick,
+          openArticle: openArticle,
         };
         return <ArticleCard {...articleCardProps} />;
       })}
