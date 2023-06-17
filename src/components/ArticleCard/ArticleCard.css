@@ -1,0 +1,33 @@
+.article-card {
+  width: 350px;
+  height: 300px;
+  background: #d9d9d9;
+  border: 2px solid #bbbbbb;
+  cursor: pointer;
+}
+
+.article-card:hover {
+  border: 2px solid #000000;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.article-title {
+  /* font-weight: 400; */
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.article-image {
+  border: 2px solid #000000;
+  max-width: 140px;
+  max-height: 140px;
+}
+
+.article-introduction {
+  margin: 20px;
+}
