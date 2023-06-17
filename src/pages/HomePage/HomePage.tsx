@@ -7,11 +7,18 @@ import { useHomePage } from "./useHomePage";
 
 export const HomePage = () => {
   const {
-    data: { articleData, errorMessage, sortedArticleData, filterActive },
+    data: {
+      articleData,
+      errorMessage,
+      sortedArticleData,
+      filterActive,
+      sections,
+    },
     operations: {
       handleArticleClick,
       handleFilterByDate,
       handleReverseFilterByDate,
+      handleFilterByCategory,
     },
   } = useHomePage();
 
@@ -29,8 +36,10 @@ export const HomePage = () => {
   }
 
   const FilterNavigationBarProps = {
+    sections,
     handleFilterByDate,
     handleReverseFilterByDate,
+    handleFilterByCategory,
   };
 
   return (

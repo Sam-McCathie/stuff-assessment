@@ -9,6 +9,7 @@ export const useHomePage = () => {
   const [articleData, setArticleData] = useState<Article[]>([]);
   const [sortedArticleData, setSortedArticleData] = useState<Article[]>([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [sections, setSections] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchArticlesData = async () => {
@@ -29,6 +30,17 @@ export const useHomePage = () => {
     console.log("Fetching data");
     fetchArticlesData();
   }, []);
+
+  useEffect(() => {
+    const createSectionsArray = () => {
+      const articles = [...articleData];
+      const sections = articles.map((article) => article.story.section);
+      const sectionsArray = Array.from(new Set(sections));
+      setSections(sectionsArray);
+    };
+
+    createSectionsArray();
+  }, [articleData]);
 
   // TODO: Resolve error if user goes directly to article page
   // - refetch data and filter
@@ -58,9 +70,17 @@ export const useHomePage = () => {
 
   const handleReverseFilterByDate = () => {
     console.log("reverse filter by date");
-
     const sortedData = [...sortedArticleData];
     setSortedArticleData(sortedData.reverse());
+  };
+
+  const handleFilterByCategory = (category: string) => {
+    const articles = [...articleData];
+    const filteredArticlesArray = articles.filter(
+      (article) => article.story.section === category
+    );
+    setSortedArticleData(filteredArticlesArray);
+    setFilterActive(true);
   };
 
   return {
@@ -69,11 +89,13 @@ export const useHomePage = () => {
       sortedArticleData,
       errorMessage,
       filterActive,
+      sections,
     },
     operations: {
       handleArticleClick,
       handleFilterByDate,
       handleReverseFilterByDate,
+      handleFilterByCategory,
     },
   };
 };
