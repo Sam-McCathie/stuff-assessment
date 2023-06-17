@@ -9,5 +9,7 @@ type FilterNavigationButtonProps = {
 export const FilterNavigationButton = (props: FilterNavigationButtonProps) => {
   const { text, isActive, onClick } = props;
 
-  return <button className="filter-navigation-button">{text}</button>;
+  return (
+    <button className="regular-button filter-navigation-button">{text}</button>
+  );
 };
