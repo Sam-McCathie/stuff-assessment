@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../components/Header.tsx/Header";
+import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
+import { Header } from "../../components/Header.tsx/Header";
+import "./HomePage.css";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -46,13 +48,16 @@ export const HomePage = () => {
   return (
     <div>
       <Header isHomePage={true} />
-      <button
-        onClick={() => {
-          handleArticleClick(1, "Testing");
-        }}
-      >
-        To article
-      </button>
+      <div className="home-body">
+        <FilterNavigationBar />
+        <button
+          onClick={() => {
+            handleArticleClick(1, "Testing");
+          }}
+        >
+          To article
+        </button>
+      </div>
     </div>
   );
 };
