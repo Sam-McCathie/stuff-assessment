@@ -1,3 +1,4 @@
+import { findThumbnailImage } from "../../functions";
 import { Article } from "../../types";
 import { ArticleCard, ArticleCardProps } from "../ArticleCard/ArticleCard";
 import "./Articles.css";
@@ -11,9 +12,7 @@ export const Articles = ({ articleData, onClick }: ArticlesProps) => {
   return (
     <div className="articles">
       {articleData.map((article: Article) => {
-        const thumbnailImage = article.story.images.find(
-          (image) => image.type === "Thumbnail 1:1"
-        );
+        const thumbnailImage = findThumbnailImage(article.story.images);
 
         const openArticle = () => {
           onClick(article.storyId);
