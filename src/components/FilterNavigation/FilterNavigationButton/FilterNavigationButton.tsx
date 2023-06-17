@@ -3,8 +3,8 @@ import "./FilterNavigationButton.css";
 type FilterNavigationButtonProps = {
   text: string;
   isActive?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onClickToggle?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
+  onClickToggle?: () => void;
 };
 
 export const FilterNavigationButton = (props: FilterNavigationButtonProps) => {

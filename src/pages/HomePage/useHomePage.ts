@@ -26,6 +26,7 @@ export const useHomePage = () => {
       }
     };
 
+    console.log("Fetching data");
     fetchArticlesData();
   }, []);
 
@@ -43,9 +44,7 @@ export const useHomePage = () => {
   // handle filter active here instead of filter nav bar?
   const [filterActive, setFilterActive] = useState(false);
 
-  // [BUG] Refeteches data every time it runs, need to fix.
-  const handleFilterByDate = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleFilterByDate = () => {
     const sortedData = [...articleData];
     sortedData.sort((a, b) => {
       const dateA = moment(a.publishedDate, "HH:mm DD/MM/YYYY").toDate();
@@ -57,12 +56,7 @@ export const useHomePage = () => {
     setFilterActive(true);
   };
 
-  // [BUG] Refeteches data every time it runs, need to fix.
-  const handleReverseFilterByDate = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-
+  const handleReverseFilterByDate = () => {
     console.log("reverse filter by date");
 
     const sortedData = [...sortedArticleData];

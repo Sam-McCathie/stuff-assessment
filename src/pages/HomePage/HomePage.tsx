@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Articles } from "../../components/Articles/Articles";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
 import { Toolbar } from "../../components/Toolbar.tsx/Toolbar";
@@ -14,6 +15,11 @@ export const HomePage = () => {
     },
   } = useHomePage();
 
+  useEffect(() => {
+    console.log(articleData);
+    console.log(sortedArticleData);
+  }, [articleData]);
+
   if (!articleData) {
     return <h1>Loading...</h1>;
   }
@@ -21,9 +27,6 @@ export const HomePage = () => {
   if (errorMessage) {
     return <h1>{errorMessage}</h1>;
   }
-
-  console.log(articleData);
-  console.log(sortedArticleData);
 
   const FilterNavigationBarProps = {
     handleFilterByDate,

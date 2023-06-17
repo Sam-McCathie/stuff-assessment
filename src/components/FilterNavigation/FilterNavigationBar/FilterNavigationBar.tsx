@@ -3,10 +3,8 @@ import { FilterNavigationButton } from "../FilterNavigationButton/FilterNavigati
 import { memo, useState } from "react";
 
 type FilterNavigationBarProps = {
-  handleFilterByDate: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  handleReverseFilterByDate: (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => void;
+  handleFilterByDate: () => void;
+  handleReverseFilterByDate: () => void;
 };
 
 export const FilterNavigationBar = memo(
@@ -22,8 +20,8 @@ export const FilterNavigationBar = memo(
         <FilterNavigationButton text="Sections" />
         <FilterNavigationButton
           text="Date"
-          onClick={(e) => {
-            handleFilterByDate(e);
+          onClick={() => {
+            handleFilterByDate();
             setActiveFilter("Date");
           }}
           onClickToggle={handleReverseFilterByDate}
