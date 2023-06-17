@@ -5,7 +5,14 @@ import "./HomePage.css";
 import { useHomePage } from "./useHomePage";
 
 export const HomePage = () => {
-  const { articleData, errorMessage, handleArticleClick } = useHomePage();
+  const {
+    data: { articleData, errorMessage, sortedArticleData, filterActive },
+    operations: {
+      handleArticleClick,
+      handleFilterByDate,
+      handleReverseFilterByDate,
+    },
+  } = useHomePage();
 
   if (!articleData) {
     return <h1>Loading...</h1>;
@@ -16,13 +23,22 @@ export const HomePage = () => {
   }
 
   console.log(articleData);
+  console.log(sortedArticleData);
+
+  const FilterNavigationBarProps = {
+    handleFilterByDate,
+    handleReverseFilterByDate,
+  };
 
   return (
     <div>
       <Toolbar isHomePage={true} />
       <div className="home-body">
-        <FilterNavigationBar />
-        <Articles articleData={articleData} onClick={handleArticleClick} />
+        <FilterNavigationBar {...FilterNavigationBarProps} />
+        <Articles
+          articleData={!filterActive ? articleData : sortedArticleData}
+          onClick={handleArticleClick}
+        />
       </div>
     </div>
   );

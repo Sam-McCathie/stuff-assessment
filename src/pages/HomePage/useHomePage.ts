@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Article } from "../../types";
@@ -6,6 +7,7 @@ export const useHomePage = () => {
   const navigate = useNavigate();
 
   const [articleData, setArticleData] = useState<Article[]>([]);
+  const [sortedArticleData, setSortedArticleData] = useState<Article[]>([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -37,9 +39,47 @@ export const useHomePage = () => {
     [articleData]
   );
 
+  // clean up how this is handled
+  // handle filter active here instead of filter nav bar?
+  const [filterActive, setFilterActive] = useState(false);
+
+  // [BUG] Refeteches data every time it runs, need to fix.
+  const handleFilterByDate = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const sortedData = [...articleData];
+    sortedData.sort((a, b) => {
+      const dateA = moment(a.publishedDate, "HH:mm DD/MM/YYYY").toDate();
+      const dateB = moment(b.publishedDate, "HH:mm DD/MM/YYYY").toDate();
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    setSortedArticleData(sortedData);
+    setFilterActive(true);
+  };
+
+  // [BUG] Refeteches data every time it runs, need to fix.
+  const handleReverseFilterByDate = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+
+    console.log("reverse filter by date");
+
+    const sortedData = [...sortedArticleData];
+    setSortedArticleData(sortedData.reverse());
+  };
+
   return {
-    articleData,
-    errorMessage,
-    handleArticleClick,
+    data: {
+      articleData,
+      sortedArticleData,
+      errorMessage,
+      filterActive,
+    },
+    operations: {
+      handleArticleClick,
+      handleFilterByDate,
+      handleReverseFilterByDate,
+    },
   };
 };
