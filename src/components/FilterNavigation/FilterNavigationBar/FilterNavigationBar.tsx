@@ -60,6 +60,7 @@ export const FilterNavigationBar = memo(
               <FilterNavigationButton
                 text="Sections"
                 onClick={toggleSections}
+                onClickToggle={toggleSections}
                 isActive={filter === "Section"}
               />
               <FilterNavigationButton
