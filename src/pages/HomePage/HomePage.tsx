@@ -7,19 +7,13 @@ import { useHomePage } from "./useHomePage";
 
 export const HomePage = () => {
   const {
-    data: {
-      articleData,
-      errorMessage,
-      sortedArticleData,
-      filterActive,
-      sections,
-    },
+    data: { articleData, errorMessage, sortedArticleData, filter, sections },
     operations: {
       handleArticleClick,
       handleFilterByDate,
       handleReverseFilterByDate,
       handleFilterBySection,
-      setFilterActive,
+      setFilter,
       handleClearFilter,
     },
   } = useHomePage();
@@ -33,12 +27,12 @@ export const HomePage = () => {
   }
 
   const FilterNavigationBarProps = {
-    filterActive,
+    filter,
     sections,
     handleFilterByDate,
     handleReverseFilterByDate,
     handleFilterBySection,
-    setFilterActive,
+    setFilter,
     handleClearFilter,
   };
 
@@ -48,7 +42,7 @@ export const HomePage = () => {
       <div className="home-body">
         <FilterNavigationBar {...FilterNavigationBarProps} />
         <Articles
-          articleData={filterActive === "All" ? articleData : sortedArticleData}
+          articleData={filter === "All" ? articleData : sortedArticleData}
           onClick={handleArticleClick}
         />
       </div>

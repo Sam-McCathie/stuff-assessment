@@ -7,10 +7,9 @@ export type ArticleCardProps = {
   imageUrl: string;
   imageAlt: string;
   introduction: string;
-  openArticle: (id: string) => void; // TODO: Add onClick
+  openArticle: (id: string) => void;
 };
 
-// TODO: Hide image if no thumbnail provided
 export const ArticleCard = memo(
   ({
     id,

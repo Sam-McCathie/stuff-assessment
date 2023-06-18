@@ -1,26 +1,26 @@
 import "./FilterNavigationBar.css";
 import { FilterNavigationButton } from "../FilterNavigationButton/FilterNavigationButton";
 import { memo, useEffect, useState } from "react";
-import { FilterActive } from "../../../pages/HomePage/useHomePage";
+import { Filter } from "../../../pages/HomePage/useHomePage";
 
 export type FilterNavigationBarProps = {
-  filterActive: FilterActive;
+  filter: Filter;
   sections: string[];
   handleFilterByDate: () => void;
   handleReverseFilterByDate: () => void;
   handleFilterBySection: (section: string) => void;
-  setFilterActive: (filterActive: FilterActive) => void;
+  setFilter: (filter: Filter) => void;
   handleClearFilter: () => void;
 };
 
 export const FilterNavigationBar = memo(
   ({
-    filterActive,
+    filter,
     sections,
     handleFilterByDate,
     handleReverseFilterByDate,
     handleFilterBySection,
-    setFilterActive,
+    setFilter,
     handleClearFilter,
   }: FilterNavigationBarProps) => {
     const [isSectionsActive, setIsSectionsActive] = useState(false);
@@ -29,18 +29,18 @@ export const FilterNavigationBar = memo(
     const toggleSections = () => {
       setIsSectionsActive(!isSectionsActive);
       if (isSectionsActive) {
-        setFilterActive("All");
+        setFilter("All");
         setActiveSection(null);
       }
     };
 
     // handles if user selects a different filter instead of collapsing sections
     useEffect(() => {
-      if (filterActive !== "Section") {
+      if (filter !== "Section") {
         setIsSectionsActive(false);
         setActiveSection(null);
       }
-    }, [filterActive]);
+    }, [filter]);
 
     const handleActiveSection = (section: string) => {
       setActiveSection(section);
@@ -55,18 +55,18 @@ export const FilterNavigationBar = memo(
               <FilterNavigationButton
                 text="All"
                 onClick={handleClearFilter}
-                isActive={filterActive === "All"}
+                isActive={filter === "All"}
               />
               <FilterNavigationButton
                 text="Sections"
                 onClick={toggleSections}
-                isActive={filterActive === "Section"}
+                isActive={filter === "Section"}
               />
               <FilterNavigationButton
                 text="Date"
                 onClick={handleFilterByDate}
                 onClickToggle={handleReverseFilterByDate}
-                isActive={filterActive === "Date"}
+                isActive={filter === "Date"}
               />
             </div>
           </div>
@@ -80,7 +80,7 @@ export const FilterNavigationBar = memo(
                 onClick={() => {
                   handleFilterBySection(section);
                   handleActiveSection(section);
-                  setFilterActive("Section");
+                  setFilter("Section");
                 }}
                 isActive={activeSection === section}
               />

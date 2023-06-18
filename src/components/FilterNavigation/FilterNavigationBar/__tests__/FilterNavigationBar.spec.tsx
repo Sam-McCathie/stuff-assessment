@@ -5,12 +5,12 @@ import {
 } from "../FilterNavigationBar";
 
 const filterNavigationBarProps: FilterNavigationBarProps = {
-  filterActive: "All",
+  filter: "All",
   sections: ["National", "Business", "Politics", "Quizzes", "Coronavirus"],
   handleFilterByDate: jest.fn(),
   handleReverseFilterByDate: jest.fn(),
   handleFilterBySection: jest.fn(),
-  setFilterActive: jest.fn(),
+  setFilter: jest.fn(),
   handleClearFilter: jest.fn(),
 };
 

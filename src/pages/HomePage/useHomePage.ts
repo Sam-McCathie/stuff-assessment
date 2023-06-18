@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Article } from "../../types";
 
-export type FilterActive = "All" | "Section" | "Date";
+export type Filter = "All" | "Section" | "Date";
 
 export const useHomePage = () => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export const useHomePage = () => {
     [articleData]
   );
 
-  const [filterActive, setFilterActive] = useState<FilterActive>("All");
+  const [filter, setFilter] = useState<Filter>("All");
 
   const handleFilterByDate = () => {
     const sortedData = [...articleData];
@@ -64,7 +64,7 @@ export const useHomePage = () => {
     });
 
     setSortedArticleData(sortedData);
-    setFilterActive("Date");
+    setFilter("Date");
   };
 
   const handleReverseFilterByDate = () => {
@@ -78,12 +78,12 @@ export const useHomePage = () => {
       (article) => article.story.section === section
     );
     setSortedArticleData(filteredArticlesArray);
-    setFilterActive("Section");
+    setFilter("Section");
   };
 
   const handleClearFilter = () => {
     setSortedArticleData([]);
-    setFilterActive("All");
+    setFilter("All");
   };
 
   return {
@@ -91,7 +91,7 @@ export const useHomePage = () => {
       articleData,
       sortedArticleData,
       errorMessage,
-      filterActive,
+      filter,
       sections,
     },
     operations: {
@@ -99,7 +99,7 @@ export const useHomePage = () => {
       handleFilterByDate,
       handleReverseFilterByDate,
       handleFilterBySection,
-      setFilterActive,
+      setFilter,
       handleClearFilter,
     },
   };
