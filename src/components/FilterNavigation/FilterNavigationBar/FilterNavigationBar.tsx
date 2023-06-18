@@ -23,12 +23,12 @@ export const FilterNavigationBar = memo(
     setFilter,
     handleClearFilter,
   }: FilterNavigationBarProps) => {
-    const [isSectionsActive, setIsSectionsActive] = useState(false);
+    const [isSectionsVisible, setIsSectionsVisible] = useState(false);
     const [activeSection, setActiveSection] = useState<string | null>(null);
 
     const toggleSections = () => {
-      setIsSectionsActive(!isSectionsActive);
-      if (isSectionsActive) {
+      setIsSectionsVisible(!isSectionsVisible);
+      if (isSectionsVisible) {
         setFilter("All");
         setActiveSection(null);
       }
@@ -37,7 +37,7 @@ export const FilterNavigationBar = memo(
     // handles if user selects a different filter instead of collapsing sections
     useEffect(() => {
       if (filter !== "Section") {
-        setIsSectionsActive(false);
+        setIsSectionsVisible(false);
         setActiveSection(null);
       }
     }, [filter]);
@@ -71,7 +71,7 @@ export const FilterNavigationBar = memo(
             </div>
           </div>
         </div>
-        {isSectionsActive && (
+        {isSectionsVisible && (
           <div className="filter-sections-container">
             {sections.map((section) => (
               <FilterNavigationButton
