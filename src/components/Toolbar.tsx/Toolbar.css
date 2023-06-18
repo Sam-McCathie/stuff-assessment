@@ -6,12 +6,25 @@
   align-items: center;
 }
 
+@media (max-width: 580px) {
+  .toolbar {
+    height: auto;
+  }
+}
+
 .toolbar-content-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 110px;
+}
+
+@media (max-width: 580px) {
+  .toolbar-content-container {
+    flex-direction: column;
+    padding: 10px 0;
+  }
 }
 
 .toolbar-link {

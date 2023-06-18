@@ -48,27 +48,31 @@ export const FilterNavigationBar = memo(
 
     return (
       <div className="filter-navigation-bar">
-        <div className="filter-navigation-bar-button-container">
-          <h3>Filter by:</h3>
-          <FilterNavigationButton
-            text="All"
-            onClick={handleClearFilter}
-            isActive={filterActive === "All"}
-          />
-          <FilterNavigationButton
-            text="Sections"
-            onClick={toggleSections}
-            isActive={filterActive === "Section"}
-          />
-          <FilterNavigationButton
-            text="Date"
-            onClick={handleFilterByDate}
-            onClickToggle={handleReverseFilterByDate}
-            isActive={filterActive === "Date"}
-          />
+        <div className="filter-navigation-bar-button-container-alignment">
+          <div className="filter-navigation-bar-button-container">
+            <h3 className="filter-text">Filter by:</h3>
+            <div className="filter-buttons-container">
+              <FilterNavigationButton
+                text="All"
+                onClick={handleClearFilter}
+                isActive={filterActive === "All"}
+              />
+              <FilterNavigationButton
+                text="Sections"
+                onClick={toggleSections}
+                isActive={filterActive === "Section"}
+              />
+              <FilterNavigationButton
+                text="Date"
+                onClick={handleFilterByDate}
+                onClickToggle={handleReverseFilterByDate}
+                isActive={filterActive === "Date"}
+              />
+            </div>
+          </div>
         </div>
         {isSectionsActive && (
-          <div>
+          <div className="filter-sections-container">
             {sections.map((section) => (
               <FilterNavigationButton
                 key={section}

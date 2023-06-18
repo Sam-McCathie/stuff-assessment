@@ -18,10 +18,23 @@
   justify-content: space-between;
 }
 
+@media (max-width: 780px) {
+  .article-body {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
 .article-description-container {
   display: flex;
   flex-direction: column;
   padding: 20px 0 20px 20px;
+}
+
+@media (max-width: 780px) {
+  .article-description-container {
+    padding: 0 20px 20px;
+  }
 }
 
 .article-description {
@@ -37,6 +50,12 @@
   max-width: 300px;
   max-height: 300px;
   margin: 10px 0;
+}
+
+@media (max-width: 780px) {
+  .article-image {
+    width: 70%;
+  }
 }
 
 .full-article-button {
