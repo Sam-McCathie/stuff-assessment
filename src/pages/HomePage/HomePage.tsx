@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Articles } from "../../components/Articles/Articles";
 import { FilterNavigationBar } from "../../components/FilterNavigation/FilterNavigationBar/FilterNavigationBar";
 import { Toolbar } from "../../components/Toolbar.tsx/Toolbar";
