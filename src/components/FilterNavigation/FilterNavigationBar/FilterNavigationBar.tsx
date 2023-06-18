@@ -3,7 +3,7 @@ import { FilterNavigationButton } from "../FilterNavigationButton/FilterNavigati
 import { memo, useEffect, useState } from "react";
 import { FilterActive } from "../../../pages/HomePage/useHomePage";
 
-type FilterNavigationBarProps = {
+export type FilterNavigationBarProps = {
   filterActive: FilterActive;
   sections: string[];
   handleFilterByDate: () => void;

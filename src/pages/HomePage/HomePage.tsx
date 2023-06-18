@@ -5,14 +5,6 @@ import { Toolbar } from "../../components/Toolbar.tsx/Toolbar";
 import "./HomePage.css";
 import { useHomePage } from "./useHomePage";
 
-/**
- * TODO:
- * - Refactor:
- *     - Fix inconsistent naming convention
- * - Test
- *
- */
-
 export const HomePage = () => {
   const {
     data: {
