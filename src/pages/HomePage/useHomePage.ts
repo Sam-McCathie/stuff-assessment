@@ -43,8 +43,6 @@ export const useHomePage = () => {
     createSectionsArray();
   }, [articleData]);
 
-  // TODO: Resolve error if user goes directly to article page
-  // - refetch data and filter
   const handleArticleClick = useCallback(
     (id: string) => {
       const article = articleData.find((article) => article.storyId === id);
