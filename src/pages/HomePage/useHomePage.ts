@@ -29,7 +29,6 @@ export const useHomePage = () => {
       }
     };
 
-    console.log("Fetching data");
     fetchArticlesData();
   }, []);
 
@@ -69,7 +68,6 @@ export const useHomePage = () => {
   };
 
   const handleReverseFilterByDate = () => {
-    console.log("reverse filter by date");
     const sortedData = [...sortedArticleData];
     setSortedArticleData(sortedData.reverse());
   };

@@ -24,11 +24,6 @@ export const HomePage = () => {
     },
   } = useHomePage();
 
-  useEffect(() => {
-    console.log(articleData);
-    console.log(sortedArticleData);
-  }, [articleData]);
-
   if (!articleData) {
     return <h1>Loading...</h1>;
   }
